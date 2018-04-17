@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Details</h2>
+
+
+
+<div id="ContactDetail" class="col-md-12" >
+    <form>
+        <div class="form-group">
+            <label for="ContactId">Contact ID</label>
+            <input type="email" class="form-control" name="txtContactId" id="ContactId" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="Company">Company</label>
+            <input type="text" class="form-control" name="txtCompany" id="Company" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="FullName">Full Name</label>
+            <input type="text" class="form-control" name="txtFullName" id="FullName" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input type="text" class="form-control" name="txtFirstName" id="FirstName" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="Middle">Middle</label>
+            <input type="text" class="form-control" name="txtMiddle" id="Middle" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input type="text" class="form-control" name="txtLastName" id="LastName" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="text" class="form-control" name="txtEmail" id="Email" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="Department">Department</label>
+            <input type="text" class="form-control" name="txtDepartment" id="Department" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" name="txtTitle" id="Title" readonly="readonly">
+        </div>
+    </form>
+
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: '/api/Contacts/@ViewBag.ContactId',
+            success: function (data) {
+                // Acceder a un elemento del dom via jquery y asigarle un valor.
+                $('#ContactId').val(data.IdContact),
+                    $('#Company').val(data.Company),
+                    $('#FullName').val(data.FullName),
+                    $('#FirstName').val(data.FirstName),
+                    $('#Middle').val(data.Middle),
+                    $('#LastName').val(data.LastName),
+                    $('#Email').val(data.Email),
+                    $('#Department').val(data.Department),
+                    $('#Title').val(data.Title)
+            }
+        });
+    });
+
+</script>

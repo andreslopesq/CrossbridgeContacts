@@ -1,0 +1,37 @@
+﻿<title>@ViewBag.Title</title>
+
+<h1>Contacts</h1>
+
+<div id="gridContainer">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#gridContainer").dxDataGrid({
+            dataSource: "/api/Contacts",
+            keyExpr: "ContactId",
+            columns: [
+                "IdContact", "Company", "FullName", "FirstName", "Middle", "LastName", "Email", "Department", "Title",
+                {
+                    name: "command-editing",
+                    allowFiltering: false,
+                    allowSorting: false,
+                    cellTemplate: function (cellElement, cellInfo) {
+                        cellElement.append("<a href='/Home/Detail?ContactId=" + cellInfo.data.IdContact + "'>Detail</a>");
+                    }
+                }
+            ]
+        });
+
+    });
+    
+    function GetContacts() {
+        $.ajax({
+            method: 'GET',
+            url: '/api/Contacts',
+
+        });
+    }
+
+</script>
